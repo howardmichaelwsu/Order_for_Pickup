@@ -1,0 +1,7 @@
+My project will be a product ordering page. The first page will lead into a registartion and login in page. That will be put into the User models. After login, you will be redirected to home/profile page. You can go to order screen, click on a link to see pervious orders, or edit account. 
+The order page will have a drop down list of a few items to order. Under that will be reviews of products and website. The pay page will be the next one where you will confirm items and purchase. I will use the stripe api for payments. 
+List of features:
+register/login
+edit/delete account
+posting comments/reviews
+placing orders
