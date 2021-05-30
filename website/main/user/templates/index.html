@@ -10,10 +10,17 @@
 </head>
 <body>
 	<div id="header">
+		{% if messages %}
+    	<ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    	</ul>
+    	{% endif %}
 	</div>
     <div id="register">
         <h1> Register </h1>
-        <form action='/' method="post">
+        <form action='/register' method="post">
         	{% csrf_token %}
         	<div>
                 <label for="first_name">First Name</label>
@@ -83,7 +90,7 @@
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password">
                 <label for="confirm">Confirm Password</label>
-                <input type="password" name="confirmPassword">
+                <input type="password" name="confirm_password">
                 <button>Register</button>
             <div>
            </form>
