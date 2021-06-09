@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
-    <title>Update User Info</title>
+    <title>Complete Your Order</title>
 </head>
 <body>
-	
+	<h3>Thank you!</h3>
+    <p>You are ordering {{order}} items for a total of ${{total}}</p>
+    <a href='/usershome'><button>Home</button></a>
 </body>
 </html>

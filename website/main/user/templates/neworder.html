@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <title>New Order Page</title>
+</head>
+<body>
+		<div id="navbar">
+		<img src="{% static 'img/example_logo.png' %}" id="logo">
+		<a href="/usershome" id="homenav">Home</a>
+		<a href="/logout" id="logout">Logout</a>
+		<a href="" id="about">About</a>
+	</div>
+	<div>
+		<div id="itemsforsale">
+			<h1 class="itemheader">Items for sale</h1>
+			{% for item in item %}
+				<h3 class="item_name">{{ item.itemname }}</h3>
+				<p class="item_description">{{ item.description }}</p>
+				<p class="item_price"> {{ item.price }}</p>
+			{% endfor %}
+		</div>
+		<div>
+			{% for item in item %}
+			<form action='/pickitem' method="post">
+				{% csrf_token %}
+				<h4>{{ item.itemname }}</h4>
+				<input type="text" name="id" value="{{ item.id }}">
+				<label for="{{ item.id }}"> TEST</label>
+				{{ item.price }}
+				<select name='quantity'>
+					<option value="1">1</option>
+					<option value="2">2</option>
+				</select>
+				<button>Add to cart</button>
+			</form>
+			{% endfor %}
+		</div>
+		<div id="reviewcontainer">
+		<div>	
+			<button id="showcomment">Click here to leave review</button>
+			<div>
+				<form action='/review' method="post" id="commentbox">
+					{% csrf_token %}
+					<label for='review'> Leave Review </label>
+					<input type="text" name="review" >
+					<button>submit</button>
+				</form>
+			</div>
+		</div>	
+		<div>
+			<h3>Reviews</h3>
+				<div>
+					{% if messages %}
+    				<ul class="messages">
+        			{% for message in messages %}
+        			<li>{{ message }}</li>
+        			{% endfor %}
+    				</ul>
+    				{% endif %}
+				</div>
+					{% for review in review %}
+						<h3>{{ review.user.first_name }}  {{ review.user.last_name }} says</h3>
+						<p id="review">{{ review.review }}</p>
+						<a href="/likes">Like the Review</a>
+					{% for comment in review.comment.all %}
+						<h6 class="commentname">{{ comment.user.first_name }} {{ comment.user.last_name }}</h6>
+						<p id="comment">{{ comment.comment}}</p>
+					{% endfor %}
+					<div>
+						<div>
+							<form action="/comment" method="post">
+							{% csrf_token %}
+							<label for="comment"></label>
+							<input type="text" name="comment">
+							<input type="hidden" name="review_id" value="{{ review.id }}">
+							<button>submit comment</button>
+							</form>
+						</div>
+					</div>
+				<div>
+					{% endfor %}
+				</div>	
+			</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

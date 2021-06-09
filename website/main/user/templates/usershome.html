@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <title>Home</title>
+</head>
+<body>
+	<div id="navbar">
+		<img src="{% static 'img/example_logo.png' %}" id="logo">
+		<a href="/usershome" id="homenav">Home</a>
+		<a href="/logout" id="logout">Logout</a>
+		<a href="" id="about">About</a>
+	</div>
+	<div>
+		<h1>Welcome {{ user.first_name }} {{ user.last_name }}</h1>
+		<div id="usershomecontainer">
+			<div class="neworder">
+				<a href="/neworder"> New Order Page</a>
+				<p> this will take you to new order and review page</p>
+			</div>
+			<div class="edituser">
+				<a href="/edituser"> Edit User Info</a>
+				<p>Update users info or delete account</p>
+			</div>
+			<div class="item">
+				<a href="/item"> Add Item</a>
+				<p>Are you a seller. Right now everyone is on this site. The actual site would be only admin who could add user but wanted a second example of user adding something to database.</p>
+			</div>
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

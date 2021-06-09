@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <title>Edit Info</title>
+</head>
+<body>
+	<div id="navbar">
+		<img src="{% static 'img/example_logo.png' %}" id="logo">
+		<a href="/usershome" id="homenav">Home</a>
+		<a href="/logout" id="logout">Logout</a>
+		<a href="" id="about">About</a>
+	</div>
+	<div>
+		<h1>Edit {{ user.first_name }} {{ user.last_name }}'s profile</h1>
+		<form action="/editprofile/{{ user.id }}" method="post">
+			{% csrf_token %}
+			<div>
+            <label for="first_name">First Name</label>
+            <input type="text" name="first_name" value="{{user.first_name}}">
+            <label for="last_name">Last Name</label>
+            <input type="text" name="last_name" value="{{user.last_name}}">
+            <label for="email">Email</label>
+            <input type="text" name="email" value="{{user.email}}">
+            <label for="address">Address</label>
+            <input type="text" name="address" value="{{user.address}}">
+            <label for="zipcode">Zipcode</label>
+            <input type="text" name="zipcode" value="{{ user.zipcode }}">
+            <label for="state">State</label>
+            <select name="state">
+				<option value="AL">Alabama</option>
+				<option value="AK">Alaska</option>
+				<option value="AZ">Arizona</option>
+				<option value="AR">Arkansas</option>
+				<option value="CA">California</option>
+				<option value="CO">Colorado</option>
+				<option value="CT">Connecticut</option>
+				<option value="DE">Delaware</option>
+				<option value="DC">District Of Columbia</option>
+				<option value="FL">Florida</option>
+				<option value="GA">Georgia</option>
+				<option value="HI">Hawaii</option>
+				<option value="ID">Idaho</option>
+				<option value="IL">Illinois</option>
+				<option value="IN">Indiana</option>
+				<option value="IA">Iowa</option>
+				<option value="KS">Kansas</option>
+				<option value="KY">Kentucky</option>
+				<option value="LA">Louisiana</option>
+				<option value="ME">Maine</option>
+				<option value="MD">Maryland</option>
+				<option value="MA">Massachusetts</option>
+				<option value="MI">Michigan</option>
+				<option value="MN">Minnesota</option>
+				<option value="MS">Mississippi</option>
+				<option value="MO">Missouri</option>
+				<option value="MT">Montana</option>
+				<option value="NE">Nebraska</option>
+				<option value="NV">Nevada</option>
+				<option value="NH">New Hampshire</option>
+				<option value="NJ">New Jersey</option>
+				<option value="NM">New Mexico</option>
+				<option value="NY">New York</option>
+				<option value="NC">North Carolina</option>
+				<option value="ND">North Dakota</option>
+				<option value="OH">Ohio</option>
+				<option value="OK">Oklahoma</option>
+				<option value="OR">Oregon</option>
+				<option value="PA">Pennsylvania</option>
+				<option value="RI">Rhode Island</option>
+				<option value="SC">South Carolina</option>
+				<option value="SD">South Dakota</option>
+				<option value="TN">Tennessee</option>
+				<option value="TX">Texas</option>
+				<option value="UT">Utah</option>
+				<option value="VT">Vermont</option>
+				<option value="VA">Virginia</option>
+				<option value="WA">Washington</option>
+				<option value="WV">West Virginia</option>
+				<option value="WI">Wisconsin</option>
+				<option value="WY">Wyoming</option>
+			</select>	
+            <button>Update info</button>
+            <div>
+            <div>
+            	<a href="/deleteuser" id="deletebutton">Delete forever</a>
+            </div>
+		</form>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

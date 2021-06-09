@@ -1,0 +1,79 @@
+#navbar {
+	border-bottom: 2px solid black;
+	margin-bottom: 5%;
+}
+#logo {
+	width: 100px;
+}
+.homelink {
+	margin-left: 75%;
+}
+#logregcontainer {
+	width: 100%;
+	height: 75%;
+}
+#register {
+	border: 1px solid black;
+	width: 100%;
+	margin-bottom: 10px; 
+}
+#login {
+	border: 1px solid black;
+	width: 50%;
+	height: 20%;
+}
+#homenav {
+	margin-left: 75%; 
+}
+#usershomecontainer {
+	display: flex;
+}
+.neworder {
+	border: 2px solid black;
+	width: 25%;
+}
+.edituser {
+	border: 2px solid black;
+	width: 25%;
+}
+.item {
+	border: 2px solid black;
+	width: 25%;
+}
+#itemsforsale {
+	border: 2px solid black;
+}
+.itemheader {
+	border-bottom: 2px solid black;
+	justify-content: center;
+	display: flex;
+}
+.item_name {
+	border-bottom: 1px solid black; 
+	padding-left: 100px; 
+}
+.item_description {
+	border-bottom: 1px solid black; 
+	padding-left: 100px; 
+}
+.item_price {
+	border-bottom: 5px solid black; 
+	padding-left: 100px; 
+}
+#review {
+	border-bottom: 1px solid black; 
+}
+#comment {
+	border: 1px solid black;
+	margin-left: 20px; 
+}
+.commentname {
+	margin-left: 20px; 
+}
+#showcomment {
+	margin-top: 20px;
+	height: 25px;
+}
+#commentbox {
+	display: none;
+}

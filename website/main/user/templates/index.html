@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css'%}">
     <title>Welcome Page</title>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+	<div id="navbar">
+		<img src="{% static 'img/example_logo.png' %}" id="logo">
+		<a href="/usershome" class="homelink">Home</a>
+		<a href="" id="about">About</a>
+	</div>
 	<div id="header">
 		{% if messages %}
     	<ul class="messages">
@@ -18,6 +23,7 @@
     	</ul>
     	{% endif %}
 	</div>
+	<div id="logregcontainer">
     <div id="register">
         <h1> Register </h1>
         <form action='/register' method="post">
@@ -29,7 +35,7 @@
                 <input type="text" name="last_name" id="last_name">
                 <label for="email">Email</label>
                 <input type="text" name="email" id="email">
-                <label for="address">Adress</label>
+                <label for="address">Address</label>
                 <input type="text" name="address">
                 <label for="zipcode">Zipcode</label>
                 <input type="text" name="zipcode">
@@ -92,10 +98,10 @@
                 <label for="confirm">Confirm Password</label>
                 <input type="password" name="confirm_password">
                 <button>Register</button>
-            <div>
+            </div>
            </form>
     </div>
-    <div>
+    <div id="login">
     	<h1> Login </h1>
     	<form action="/login" method="post">
     		{% csrf_token %}
@@ -106,5 +112,8 @@
             <button>Sign in</button>
         </form>
     </div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

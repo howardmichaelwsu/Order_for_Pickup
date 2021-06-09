@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <title>Create New Item</title>
+</head>
+<body>
+	<div id="header">
+		{% if messages %}
+    	<ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    	</ul>
+    	{% endif %}
+	</div>
+	<div>
+		<h1>Create a new item</h1>
+		<form action="/additem" method="post">
+			{% csrf_token %}
+			<label for="itemname">Items name</label>
+			<input type="text" name="itemname">
+			<label for="description">Description of new item</label>
+			<input type="text" name="description">
+			<label for="price">Price of item</label>
+			<input type="text" name="price">
+			<button>Add Item</button>
+		</form>
+	</div>
+	<div>
+		<a href="/logout">Logout</a>
+		<a href="/usershome">Home</a>
+	</div>
+</body>
+</html>
