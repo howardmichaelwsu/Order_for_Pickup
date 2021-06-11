@@ -66,7 +66,8 @@
 					{% for review in review %}
 						<h3>{{ review.user.first_name }}  {{ review.user.last_name }} says</h3>
 						<p id="review">{{ review.review }}</p>
-						<a href="/likes">Like the Review</a>
+						<a href="/likes/{{ review.id }}">Like the Review</a>
+						<P> Number of likes {{ review.likes.count }}
 					{% for comment in review.comment.all %}
 						<h6 class="commentname">{{ comment.user.first_name }} {{ comment.user.last_name }}</h6>
 						<p id="comment">{{ comment.comment}}</p>

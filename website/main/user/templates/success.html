@@ -9,7 +9,17 @@
     <title>Success Registered</title>
 </head>
 <body>
-	<h1>Successfully Register</h1>
-	<a href='usershome'>Go home</a>
+	<div id="navbar">
+		<img src="{% static 'img/example_logo.png' %}" id="logo">
+		<a href="/usershome" id="homenav">Home</a>
+		<a href="/logout" id="logout">Logout</a>
+		<a href="" id="about">About</a>
+	</div>
+	<div>
+		<h1>Successfully Register</h1>
+		<a href='usershome'>Go home</a>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

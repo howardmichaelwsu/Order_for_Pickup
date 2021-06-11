@@ -7,3 +7,6 @@ $('#deletebutton').hover(function(){
 $('#showcomment').click(function(){
 	$('#commentbox').show('slow');
 });
+$('.map').hover(function(){ 
+	alert('Will fix ordering and add stripe API for ordering')
+});

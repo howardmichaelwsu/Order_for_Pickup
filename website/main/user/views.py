@@ -3,7 +3,10 @@ from django.contrib import messages
 from .models import *
 import bcrypt
 from django.db.models import Sum
-
+import requests
+import json
+#poke_api = "https://pokeapi.co/api/v2/pokemon"
+google_maps_api = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBe0y2GxJYzJ20hfHtoos14qa-sidumRIk&q=Eiffel+Tower,Paris+France"
 #home page to login or registe
 def index(request):
 	all_users = User.objects.all()
@@ -166,7 +169,9 @@ def complete(request):
 	price = last.totalprice
 	fullorder = Order.objects.aggregate(Sum('orders'))['orders__sum']
 	fullprice = Order.objects.aggregate(Sum('totalprice'))['totalprice__sum']
+	r = requests.get(google_maps_api)
 	context = {
+		'maps': r,
 		'user': user,
 		'order': fullorder,
 		'total': fullprice,
@@ -195,12 +200,10 @@ def deleteuser(request):
 	return redirect('/')
 
 def likes(request, id):
-	user = User.objects.get(id=request.session['user_id'])
-	review = Review.objects.get(id=review_id)
-	review.user.add(likes)
+	liked_post = Review.objects.get(id=id)
+	likes = User.objects.get(id=request.session['user_id'])
+	liked_post.likes.add(likes)
 	return redirect('/neworder')
-
-
 
 
 

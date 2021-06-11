@@ -18,5 +18,5 @@ urlpatterns = [
 	path('pickitem', views.pickitem),
 	path('complete', views.complete),
 	path('deleteuser', views.deleteuser),
-	path('likes/', views.likes),
+	path('likes/<int:id>', views.likes),
 ]

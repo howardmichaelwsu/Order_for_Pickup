@@ -77,3 +77,9 @@
 #commentbox {
 	display: none;
 }
+@media screen and (max-width: 767px) and (min-width: 576px) { 
+	#logregcontainer {
+	width: 75%;
+	height: 75%;
+	}
+}

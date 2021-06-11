@@ -59,7 +59,7 @@ class ReviewManager(models.Manager):
 class Review(models.Model):
 	review = models.TextField()
 	user = models.ForeignKey(User, related_name='review', on_delete=models.CASCADE)
-	liked = models.ManyToManyField(User, related_name="liked_post")
+	likes = models.ManyToManyField(User, related_name="liked_post")
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 	objects = ReviewManager()
@@ -67,7 +67,7 @@ class Review(models.Model):
 #comments on reviews left, many to many
 class Comment(models.Model):
 	comment = models.CharField(max_length=255)
-	user = models.ForeignKey(User, related_name='comment', on_delete=models.CASCADE)
+	review_user = models.ForeignKey(User, related_name='comment', on_delete=models.CASCADE)
 	review = models.ForeignKey(Review, related_name='comment', on_delete=models.CASCADE)
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)

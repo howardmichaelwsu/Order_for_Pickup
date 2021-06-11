@@ -9,6 +9,12 @@
     <title>Create New Item</title>
 </head>
 <body>
+	<div id="navbar">
+		<img src="{% static 'img/example_logo.png' %}" id="logo">
+		<a href="/usershome" id="homenav">Home</a>
+		<a href="/logout" id="logout">Logout</a>
+		<a href="" id="about">About</a>
+	</div>
 	<div id="header">
 		{% if messages %}
     	<ul class="messages">
@@ -35,5 +41,7 @@
 		<a href="/logout">Logout</a>
 		<a href="/usershome">Home</a>
 	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
