@@ -4,10 +4,10 @@ from .models import *
 import bcrypt
 from django.db.models import Sum
 import requests
-import json
-#poke_api = "https://pokeapi.co/api/v2/pokemon"
+poke_api = "https://pokeapi.co/api/v2/pokemon"
 google_maps_api = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBe0y2GxJYzJ20hfHtoos14qa-sidumRIk&q=Eiffel+Tower,Paris+France"
-#home page to login or registe
+
+#home page to login or register
 def index(request):
 	all_users = User.objects.all()
 	context = {
@@ -20,7 +20,7 @@ def register(request):
 	if request.method == 'GET':		
 		return redirect('/')
 	errors = User.objects.basic_validation(request.POST)
-	#checking the user entering all info
+	#checking the user entering all info 
 	if len(errors) > 0:
 		for key, value in errors.items():
 			messages.error(request, value)
@@ -41,7 +41,7 @@ def register(request):
 	#will render new page if successful and will also store user info so they can stay logged in
 	return redirect('/success')
 
-#success and checking if a user.id is in session
+#success and checking if a valid user is signed in (user.id)
 def success(request):
     if 'user_id' not in request.session:
         return redirect('/')
@@ -113,7 +113,14 @@ def comment(request):
 	Comment.objects.create(comment = comment, user = user, review = review)
 	return redirect('/neworder')
 
-# so user can edit profle info
+# Like button, many-to-many
+def likes(request, id):
+	liked_post = Review.objects.get(id=id)
+	likes = User.objects.get(id=request.session['user_id'])
+	liked_post.likes.add(likes)
+	return redirect('/neworder')
+
+# Webpage to update users own info
 def edituser(request):
 	if 'user_id' not in request.session:
 		return redirect('/')
@@ -123,6 +130,7 @@ def edituser(request):
 	}
 	return render(request, 'edituser.html', context)
 
+#to save edits made by user
 def editprofile(request, id):
 	edit_user = User.objects.get(id = id)
 	edit_user.first_name = request.POST['first_name']
@@ -133,6 +141,12 @@ def editprofile(request, id):
 	edit_user.state=request.POST['state']
 	edit_user.save()
 	return redirect('/edituser')
+
+# User can delete profile 
+def deleteuser(request):
+	user = User.objects.get(id=request.session['user_id'])
+	user.delete()
+	return redirect('/')
 
 #rendering page to add item.
 def item(request):
@@ -160,7 +174,7 @@ def additem(request):
 	)
 	return redirect('/neworder')
 
-#completed order/cart page render
+#completed order/cart page render and api call
 def complete(request):
 	if 'user_id' not in request.session:
 		return redirect('/')
@@ -169,9 +183,18 @@ def complete(request):
 	price = last.totalprice
 	fullorder = Order.objects.aggregate(Sum('orders'))['orders__sum']
 	fullprice = Order.objects.aggregate(Sum('totalprice'))['totalprice__sum']
-	r = requests.get(google_maps_api)
+	#api call for project will delete once I get google maps to work 
+	r = requests.get(poke_api)
+	r = r.json()
+	results = r['results']
+	# google maps api call not working says json decoding error had <iframe> on html before deleting to make poke_api work
+	# looked at python documentation and it said to use w.json.loads(w) but it gives me an error saying response doesn't have load function even if I import json like documentation said.
+	# w = requests.get(google_maps_api)
+	# w = w.json()
+	# res = r['res']
 	context = {
-		'maps': r,
+		#'maps': res,
+		'pokemon': results,
 		'user': user,
 		'order': fullorder,
 		'total': fullprice,
@@ -194,16 +217,6 @@ def pickitem(request):
 	else:
 		return redirect('/neworder')
 
-def deleteuser(request):
-	user = User.objects.get(id=request.session['user_id'])
-	user.delete()
-	return redirect('/')
-
-def likes(request, id):
-	liked_post = Review.objects.get(id=id)
-	likes = User.objects.get(id=request.session['user_id'])
-	liked_post.likes.add(likes)
-	return redirect('/neworder')
 
 
 

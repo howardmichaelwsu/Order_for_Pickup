@@ -20,15 +20,9 @@
     	<p>You are ordering {{order}} items for a total of ${{total}}</p>
     </div>
     <div>
-    	<iframe
-		  width="600"
-		  height="450"
-		  style="border:0"
-		  loading="lazy"
-		  allowfullscreen
-		  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBe0y2GxJYzJ20hfHtoos14qa-sidumRIk
-		    &q=Space+Needle,Seattle+WA">
-		</iframe>
+    	{% for i in pokemon %}
+    		<h2>{{ i.name }}</h2>
+		{% endfor %}
     </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{% static 'js/script.js' %}"></script>
